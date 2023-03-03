@@ -14,14 +14,14 @@ export default function PostPreview({
 }: Omit<Post, '_id'>) {
   return (
     <div>
-      <div className="mb-5">
+      {/* <div className="mb-5">
         <CoverImage
           slug={slug}
           title={title}
           image={coverImage}
           priority={false}
         />
-      </div>
+      </div> */}
       <h3 className="mb-3 text-3xl leading-snug">
         <Link href={`/posts/${slug}`} className="hover:underline">
           {title}
