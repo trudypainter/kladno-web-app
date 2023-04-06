@@ -39,43 +39,26 @@ export default defineType({
           type: 'string',
         },
       ],
-      validation: (rule) => rule.required(),
+      // validation: (rule) => rule.required(),
+    }),
+
+    defineField({
+      name: 'scans',
+      title: 'Scans',
+      type: 'array',
+      of: [{ type: 'image' }],
     }),
     defineField({
-      name: 'startDate',
-      title: 'Start Date',
-      type: 'date',
-    }),
-    defineField({
-      name: 'endDate',
-      title: 'End Date',
-      type: 'date',
-    }),
-    defineField({
-      name: 'excerpt',
-      title: 'Excerpt',
-      type: 'text',
-    }),
-    defineField({
-      name: 'coverImage',
-      title: 'Cover Image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-    }),
-    defineField({
-      name: 'date',
-      title: 'Date',
+      name: 'dateIn',
+      title: 'Date Received In',
       type: 'datetime',
     }),
     defineField({
-      name: 'person',
-      title: 'Person Prosecuted',
-      type: 'reference',
-      to: [{ type: personType.name }],
-      validation: (rule) => rule.required(),
+      name: 'datePenalty',
+      title: 'Date Penalty Posted',
+      type: 'datetime',
     }),
+
     defineField({
       name: 'announcementsViolated',
       title: 'Announcements Violated',
@@ -87,22 +70,20 @@ export default defineType({
         },
       ],
     }),
+    defineField({
+      name: 'originalFilename',
+      title: 'Original Filename',
+      type: 'string',
+    }),
   ],
 
   preview: {
     select: {
-      title: 'title',
-      author: 'person.name',
-      date: 'date',
-      media: 'coverImage',
+      first: 'personProsecuted.firstName',
+      last: 'personProsecuted.lastName',
     },
-    prepare({ title, media, author, date }) {
-      const subtitles = [
-        author && `by ${author}`,
-        date && `on ${format(parseISO(date), 'LLL d, yyyy')}`,
-      ].filter(Boolean)
-
-      return { title, media, subtitle: subtitles.join(' ') }
+    prepare({ first, last }) {
+      return { title: 'Case File: ' + first + ' ' + last }
     },
   },
 })
