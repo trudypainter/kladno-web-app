@@ -2,11 +2,14 @@ import { apiVersion, dataset, projectId, useCdn } from 'lib/sanity.api'
 import {
   indexQuery,
   type Post,
+  type CaseFile,
+  type Person,
   postAndMoreStoriesQuery,
   postBySlugQuery,
   postSlugsQuery,
   type Settings,
   settingsQuery,
+  caseFileFields,
 } from 'lib/sanity.queries'
 import { createClient } from 'next-sanity'
 
@@ -31,6 +34,13 @@ export async function getAllPosts(): Promise<Post[]> {
   return []
 }
 
+export async function getAllCaseFiles(): Promise<CaseFile[]> {
+  if (client) {
+    return (await client.fetch(indexQuery)) || []
+  }
+  return []
+}
+
 export async function getAllPostsSlugs(): Promise<Pick<Post, 'slug'>[]> {
   if (client) {
     const slugs = (await client.fetch<string[]>(postSlugsQuery)) || []
@@ -44,6 +54,15 @@ export async function getPostBySlug(slug: string): Promise<Post> {
     return (await client.fetch(postBySlugQuery, { slug })) || ({} as any)
   }
   return {} as any
+}
+
+export async function getCaseFileByID(id: string): Promise<CaseFile> {
+  const documentId = id
+  const query = `*[_id == $documentId][0] {
+    ${caseFileFields}
+  }`
+
+  return await client.fetch(query, { documentId })
 }
 
 export async function getPostAndMoreStories(

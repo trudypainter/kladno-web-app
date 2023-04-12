@@ -10,11 +10,36 @@ const postFields = groq`
   "author": author->{name, picture},
 `
 
+export const caseFileFields = groq`
+  _id,
+  title,
+  dateIn,
+  datePenalty,
+  coverImage,
+  scans[] {
+    asset-> {
+      url,
+      metadata {
+        dimensions {
+          width,
+          height
+        }
+      }
+    }
+  },
+  "personProsecuted": personProsecuted->{firstName, lastName},
+`
+
 export const settingsQuery = groq`*[_type == "settings"][0]`
 
+// export const indexQuery = groq`
+// *[_type == "post"] | order(date desc, _updatedAt desc) {
+//   ${postFields}
+// }`
+
 export const indexQuery = groq`
-*[_type == "post"] | order(date desc, _updatedAt desc) {
-  ${postFields}
+*[_type == "caseFile"] | order(date desc, _updatedAt desc) {
+  ${caseFileFields}
 }`
 
 export const postAndMoreStoriesQuery = groq`
@@ -39,6 +64,12 @@ export const postBySlugQuery = groq`
 }
 `
 
+export const caseFileByIDQuery = groq`
+*[_type == "caseFile" && slug.current == $slug][0] {
+  ${postFields}
+}
+`
+
 export interface Author {
   name?: string
   picture?: any
@@ -53,6 +84,21 @@ export interface Post {
   author?: Author
   slug?: string
   content?: any
+}
+
+export interface CaseFile {
+  _id: string
+  dateIn: string
+  datePenalty: string
+  scans: any
+  announcementsViolated: any
+  personProsecuted: Person
+}
+
+export interface Person {
+  _id: string
+  firstName: string
+  lastName: string
 }
 
 export interface Settings {
