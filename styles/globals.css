@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk&family=Space+Mono:ital@1&display=swap');
+}
+
+
+body, html {
+  background-color: #2D2F3A;
+  font-family: 'Space Grotesk', sans-serif;
+}

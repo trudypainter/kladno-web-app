@@ -3,6 +3,7 @@ import IntroTemplate from 'intro-template'
 import * as demo from 'lib/demo.data'
 import type { CaseFile, Post, Settings } from 'lib/sanity.queries'
 import Link from 'next/link'
+
 import CaseFilePreview from './CaseFilePreview'
 
 export interface IndexPageProps {
@@ -16,15 +17,15 @@ export default function IndexPage(props: IndexPageProps) {
   const { preview, loading, caseFiles, settings } = props
 
   return (
-    <div className="m-auto my-32 w-10/12">
+    <div className="p-4 bg-dark">
       <PageHead />
 
       <div className="flex w-full justify-between ">
-        <h1 className="text-[42px] font-bold tracking-tighter">
+        <h1 className="text-head font-sans text-white">
           Kladno Archive
         </h1>
         <div>
-          <Link href="/studio">Studio</Link>
+          <Link className="text-sm text-white" href="/studio">Studio</Link>
         </div>
       </div>
 
