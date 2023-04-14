@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { getCaseFileByID } from 'lib/sanity.client'
 import { CaseFile } from 'lib/sanity.queries'
-import IndexPageHead from './IndexPageHead'
 import { Head } from 'next/document'
 import PageHead from './PageHead'
 

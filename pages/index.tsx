@@ -5,8 +5,6 @@ import { CaseFile, Post, Settings } from 'lib/sanity.queries'
 import { GetStaticProps } from 'next'
 import { lazy } from 'react'
 
-const PreviewIndexPage = lazy(() => import('components/PreviewIndexPage'))
-
 interface PageProps {
   caseFiles: CaseFile[]
   settings: Settings
@@ -25,22 +23,20 @@ interface PreviewData {
 export default function Page(props: PageProps) {
   const { caseFiles, settings, preview, token } = props
 
-  if (preview) {
-    return (
-      <PreviewSuspense
-        fallback={
-          <IndexPage
-            loading
-            preview
-            caseFiles={caseFiles}
-            settings={settings}
-          />
-        }
-      >
-        <PreviewIndexPage token={token} />
-      </PreviewSuspense>
-    )
-  }
+  // if (preview) {
+  //   return (
+  //     <PreviewSuspense
+  //       fallback={
+  //         <IndexPage
+  //           loading
+  //           preview
+  //           caseFiles={caseFiles}
+  //           settings={settings}
+  //         />
+  //       }
+  //     ></PreviewSuspense>
+  //   )
+  // }
 
   return <IndexPage caseFiles={caseFiles} settings={settings} />
 }

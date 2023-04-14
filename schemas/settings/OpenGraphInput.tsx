@@ -1,5 +1,4 @@
 import { Skeleton, Stack } from '@sanity/ui'
-import { height, width } from 'components/OpenGraphImage'
 import React, { lazy, Suspense, useDeferredValue } from 'react'
 import { type ObjectInputProps } from 'sanity'
 import styled from 'styled-components'
@@ -11,7 +10,7 @@ const RatioSkeleton = styled(Skeleton).attrs({
   shadow: 1,
   overflow: 'hidden',
 })`
-  aspect-ratio: ${width} / ${height};
+  aspect-ratio: ${30} / ${30};
   height: 100%;
   width: 100%;
 `
