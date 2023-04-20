@@ -5,6 +5,8 @@ import type { CaseFile, Post, Settings } from 'lib/sanity.queries'
 import Link from 'next/link'
 
 import CaseFilePreview from './CaseFilePreview'
+import KladnoHeader from './KladnoHeader'
+import SearchBar from './Search'
 
 export interface IndexPageProps {
   preview?: boolean
@@ -17,17 +19,11 @@ export default function IndexPage(props: IndexPageProps) {
   const { preview, loading, caseFiles, settings } = props
 
   return (
-    <div className="p-4 bg-dark">
+    <div className="bg-dark p-4">
       <PageHead />
 
-      <div className="flex w-full justify-between ">
-        <h1 className="text-head font-sans text-white">
-          Kladno Archive
-        </h1>
-        <div>
-          <Link className="text-sm text-white" href="/studio">Studio</Link>
-        </div>
-      </div>
+      <KladnoHeader />
+      <SearchBar />
 
       <div className="flex w-full flex-wrap justify-between">
         {caseFiles.map((file) => (
