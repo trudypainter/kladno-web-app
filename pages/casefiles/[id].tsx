@@ -1,6 +1,5 @@
 import { PreviewSuspense } from '@sanity/preview-kit'
 import CaseFilePage from 'components/CaseFilePage'
-import PostPage from 'components/PostPage'
 import {
   getAllPostsSlugs,
   getCaseFileByID,

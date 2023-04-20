@@ -18,6 +18,8 @@ import announcementType from 'schemas/announcement'
 import institutionType from 'schemas/institution'
 
 import settingsType from 'schemas/settings'
+import caseFileDocument from 'schemas/caseFileDocument'
+import bucket from 'schemas/bucket'
 
 const title =
   process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE ||
@@ -35,9 +37,11 @@ export default defineConfig({
       // postType,
       settingsType,
       personType,
+      caseFileDocument,
       caseFileType,
       announcementType,
       institutionType,
+      bucket,
     ],
   },
   plugins: [
