@@ -10,13 +10,17 @@ const postFields = groq`
   "author": author->{name, picture},
 `
 
+// "documents": documents[]->{...},
 export const caseFileFields = groq`
   _id,
   title,
   dateIn,
   datePenalty,
   coverImage,
-  "documents": documents[]->{...},
+  "documents": documents[]->{
+    ...,
+    "scan": scan.asset->url,
+    originalFilename},
   "personProsecuted": personProsecuted->{firstName, lastName},
 `
 

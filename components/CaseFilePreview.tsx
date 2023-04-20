@@ -29,6 +29,8 @@ export default function CaseFilePreview(props: { case: CaseFile }) {
           ))}
         </div>
       )}
+      <hr className="border-1 border-semi-dark "></hr>
+      <img src={props.case.documents[0].scan}></img>
     </div>
   )
 }
