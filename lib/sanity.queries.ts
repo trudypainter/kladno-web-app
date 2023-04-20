@@ -16,26 +16,11 @@ export const caseFileFields = groq`
   dateIn,
   datePenalty,
   coverImage,
-  scans[] {
-    asset-> {
-      url,
-      metadata {
-        dimensions {
-          width,
-          height
-        }
-      }
-    }
-  },
+  "documents": documents[]->{...},
   "personProsecuted": personProsecuted->{firstName, lastName},
 `
 
 export const settingsQuery = groq`*[_type == "settings"][0]`
-
-// export const indexQuery = groq`
-// *[_type == "post"] | order(date desc, _updatedAt desc) {
-//   ${postFields}
-// }`
 
 export const indexQuery = groq`
 *[_type == "caseFile"] | order(date desc, _updatedAt desc) {
@@ -90,7 +75,7 @@ export interface CaseFile {
   _id: string
   dateIn: string
   datePenalty: string
-  scans: any
+  documents: any
   announcementsViolated: any
   personProsecuted: Person
 }

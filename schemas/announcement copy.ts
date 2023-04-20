@@ -1,17 +1,17 @@
-import { BookIcon } from '@sanity/icons'
+import { BellIcon } from '@sanity/icons'
 import { defineField, defineType } from 'sanity'
 
 import institution from './institution'
 
 export default defineType({
-  name: 'law',
-  title: 'Law',
-  icon: BookIcon,
+  name: 'announcement',
+  title: 'Announcement',
+  icon: BellIcon,
   type: 'document',
   fields: [
     defineField({
       name: 'name',
-      title: 'Law Name',
+      title: 'Announcement Name',
       type: 'string',
       validation: (rule) => rule.required(),
     }),

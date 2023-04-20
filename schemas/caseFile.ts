@@ -4,7 +4,7 @@ import { defineField, defineType } from 'sanity'
 
 import personType from './person'
 import announcementType from './announcement'
-import caseFileDocumentType from './bucket'
+import caseFileDocumentType from './caseFileDocument'
 
 /**
  * This file is the schema definition for a post.
@@ -74,6 +74,7 @@ export default defineType({
       name: 'originalFilename',
       title: 'Original Filename',
       type: 'string',
+      readOnly: true,
     }),
   ],
 

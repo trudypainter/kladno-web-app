@@ -50,10 +50,13 @@ export default defineType({
   preview: {
     select: {
       name: 'originalFilename',
+      image: 'scan',
     },
-    prepare: ({ name }) => {
+    prepare: ({ name, image }) => {
       return {
-        title: name,
+        title: name.split('.')[0],
+        imageUrl:
+          image && image.asset ? `${image.asset.url}?w=200&h=200&fit=crop` : '',
       }
     },
   },
