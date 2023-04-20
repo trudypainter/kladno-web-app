@@ -33,8 +33,13 @@ export default defineType({
     }),
     defineField({
       name: 'image',
-      title: 'Original Scan',
+      title: 'Image Scan',
       type: 'image',
+    }),
+    defineField({
+      name: 'pdf',
+      title: 'PDF Scan',
+      type: 'file',
     }),
     defineField({
       name: 'scannedText',
