@@ -43,7 +43,7 @@ export default function CaseFilePage({ id }: CaseFilePageProps) {
     <>
       <PageHead />
       {caseFile ? (
-        <div className="h-screen w-full overflow-scroll bg-semi-dark p-4">
+        <div className="h-screen w-full overflow-scroll bg-dark p-4">
           <Link
             href="/"
             className="fixed left-4 top-4 flex items-center  hover:cursor-pointer"
@@ -69,11 +69,11 @@ export default function CaseFilePage({ id }: CaseFilePageProps) {
           </div>
 
           <div className="my-sticky-div flex w-full justify-end">
-            <div className="my-2 w-96 rounded-3xl border-[1.6px] border-white p-2 px-4">
+            <div className="my-2 w-96 rounded-3xl border-[1.2px] border-white p-2 px-4">
               <input
                 type="text"
                 placeholder="Search"
-                className=" bg-semi-dark text-lightgrey caret-lightgrey focus:border-white focus:outline-none "
+                className=" bg-dark text-lightgrey caret-lightgrey focus:border-white focus:outline-none "
               />
             </div>
           </div>

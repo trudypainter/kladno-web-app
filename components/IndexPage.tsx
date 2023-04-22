@@ -67,12 +67,6 @@ export default function IndexPage(props: IndexPageProps) {
           </div>
         ))}
       </div>
-
-      <div className="flex w-full flex-wrap justify-between">
-        {caseFiles.map((file) => (
-          <CaseFilePreview case={file} />
-        ))}
-      </div>
     </div>
   )
 }
