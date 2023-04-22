@@ -2,6 +2,8 @@ import { BookIcon } from '@sanity/icons'
 import { defineField, defineType } from 'sanity'
 
 import institution from './institution'
+import PdfPreview from 'components/PdfPreview'
+import { DocumentDefinition } from '@sanity/types'
 
 export default defineType({
   name: 'law',
@@ -48,4 +50,9 @@ export default defineType({
       of: [{ type: 'block' }],
     }),
   ],
+  preview: {
+    select: {
+      pdfUrl: 'pdfFile.asset.url',
+    },
+  },
 })
