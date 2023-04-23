@@ -79,9 +79,16 @@ export interface CaseFile {
   _id: string
   dateIn: string
   datePenalty: string
-  documents: any
+  documents: CaseFileDocument[]
   announcementsViolated: any
   personProsecuted: Person
+}
+
+export interface CaseFileDocument {
+  _id: string
+  scan: string
+  date: string
+  originalFilename: string
 }
 
 export interface Person {
