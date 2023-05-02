@@ -10,8 +10,14 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({
-      name: 'name',
+      name: 'title',
       title: 'Announcement Name',
+      type: 'string',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'year',
+      title: 'Year',
       type: 'string',
       validation: (rule) => rule.required(),
     }),
@@ -21,10 +27,20 @@ export default defineType({
       type: 'string',
     }),
     defineField({
-      name: 'institutionIssuedBy',
-      title: 'Institution Issued By',
+      name: 'institution',
+      title: 'Institution',
       type: 'reference',
-      to: [institution],
+      to: [{ type: 'institution' }],
+    }),
+    defineField({
+      name: 'originalFilename',
+      title: 'Original Filename',
+      type: 'string',
+    }),
+    defineField({
+      name: 'institutionFilePath',
+      title: 'Insitituion File Path',
+      type: 'string',
     }),
     defineField({
       name: 'dateAnnounced',
@@ -32,15 +48,14 @@ export default defineType({
       type: 'datetime',
     }),
     defineField({
-      name: 'image',
-      title: 'Original Scan',
-      type: 'image',
+      name: 'pdf',
+      title: 'PDF Scan',
+      type: 'file',
     }),
     defineField({
       name: 'scannedText',
       title: 'Scanned Text',
-      type: 'array',
-      of: [{ type: 'block' }],
+      type: 'text',
     }),
   ],
 })

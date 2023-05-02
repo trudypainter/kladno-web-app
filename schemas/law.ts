@@ -12,8 +12,14 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({
-      name: 'name',
+      name: 'title',
       title: 'Law Name',
+      type: 'string',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'year',
+      title: 'Year',
       type: 'string',
       validation: (rule) => rule.required(),
     }),
@@ -34,9 +40,9 @@ export default defineType({
       type: 'datetime',
     }),
     defineField({
-      name: 'image',
-      title: 'Image Scan',
-      type: 'image',
+      name: 'originalFilename',
+      title: 'Original Filename',
+      type: 'string',
     }),
     defineField({
       name: 'pdf',
@@ -46,13 +52,12 @@ export default defineType({
     defineField({
       name: 'scannedText',
       title: 'Scanned Text',
-      type: 'array',
-      of: [{ type: 'block' }],
+      type: 'text',
     }),
   ],
   preview: {
     select: {
-      pdfUrl: 'pdfFile.asset.url',
+      title: 'title',
     },
   },
 })

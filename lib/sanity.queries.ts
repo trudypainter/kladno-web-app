@@ -13,6 +13,7 @@ const postFields = groq`
 // "documents": documents[]->{...},
 export const caseFileFields = groq`
   _id,
+  _type,
   title,
   dateIn,
   datePenalty,

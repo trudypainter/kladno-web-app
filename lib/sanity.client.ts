@@ -41,6 +41,18 @@ export async function getAllCaseFiles(): Promise<CaseFile[]> {
   return []
 }
 
+export async function getAllAnnouncements(): Promise<any> {
+  // query to get all announcements
+  const query = `*[_type == "announcement"] {_type, ...}`
+  return await client.fetch(query)
+}
+
+export async function getAllLaws(): Promise<any> {
+  // query to get all laws
+  const query = `*[_type == "law"] {_type, ...}`
+  return await client.fetch(query)
+}
+
 export async function getAllPostsSlugs(): Promise<Pick<Post, 'slug'>[]> {
   if (client) {
     const slugs = (await client.fetch<string[]>(postSlugsQuery)) || []

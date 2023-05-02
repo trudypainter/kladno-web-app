@@ -3,7 +3,6 @@ import Link from 'next/link'
 import caseFile from 'schemas/caseFile'
 
 export default function CaseFilePreview(props: { case: CaseFile }) {
-  console.log(props.case.documents)
   return (
     <div className="h-fit w-full rounded-b-2xl border-2 border-semi-dark p-0 hover:border-lightgrey ">
       <Link

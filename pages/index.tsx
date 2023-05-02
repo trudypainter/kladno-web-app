@@ -1,12 +1,19 @@
 import { PreviewSuspense } from '@sanity/preview-kit'
 import IndexPage from 'components/IndexPage'
-import { getAllCaseFiles, getAllPosts, getSettings } from 'lib/sanity.client'
+import {
+  getAllCaseFiles,
+  getAllAnnouncements,
+  getAllLaws,
+  getSettings,
+} from 'lib/sanity.client'
 import { CaseFile, Post, Settings } from 'lib/sanity.queries'
 import { GetStaticProps } from 'next'
 import { lazy } from 'react'
 
 interface PageProps {
   caseFiles: CaseFile[]
+  announcements: any[]
+  laws: any[]
   settings: Settings
   preview: boolean
   token: string | null
@@ -21,24 +28,16 @@ interface PreviewData {
 }
 
 export default function Page(props: PageProps) {
-  const { caseFiles, settings, preview, token } = props
+  const { caseFiles, settings, preview, token, announcements, laws } = props
 
-  // if (preview) {
-  //   return (
-  //     <PreviewSuspense
-  //       fallback={
-  //         <IndexPage
-  //           loading
-  //           preview
-  //           caseFiles={caseFiles}
-  //           settings={settings}
-  //         />
-  //       }
-  //     ></PreviewSuspense>
-  //   )
-  // }
-
-  return <IndexPage caseFiles={caseFiles} settings={settings} />
+  return (
+    <IndexPage
+      caseFiles={caseFiles}
+      settings={settings}
+      announcements={announcements}
+      laws={laws}
+    />
+  )
 }
 
 export const getStaticProps: GetStaticProps<
@@ -48,16 +47,20 @@ export const getStaticProps: GetStaticProps<
 > = async (ctx) => {
   const { preview = false, previewData = {} } = ctx
 
-  const [settings, caseFiles = []] = await Promise.all([
-    getSettings(),
-    //getAllPosts(),
-    getAllCaseFiles(),
-  ])
+  const [settings, caseFiles = [], announcements = [], laws = []] =
+    await Promise.all([
+      getSettings(),
+      getAllCaseFiles(),
+      getAllAnnouncements(),
+      getAllLaws(),
+    ])
 
   return {
     props: {
       caseFiles,
       settings,
+      announcements,
+      laws,
       preview,
       token: previewData.token ?? null,
     },
